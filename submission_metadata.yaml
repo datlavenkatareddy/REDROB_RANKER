@@ -1,21 +1,20 @@
 # Redrob Hackathon — Submission Metadata
-# Fill in the [FILL ME] fields before submitting.
 
-team_name: "[FILL ME]"
+team_name: "Reflex"
 
 primary_contact:
-  name: "Venkat"
-  email: "[FILL ME]"
-  phone: "[FILL ME]"
+  name: "Gnana Venkata Reddy Datla"
+  email: "dvenkatareddy2006@gmail.com"
+  phone: "9000933939"
 
 team_members:
-  - name: "Venkat"
-    email: "[FILL ME]"
+  - name: "Gnana Venkata Reddy Datla"
+    email: "dvenkatareddy2006@gmail.com"
     role: "ML Engineer"
 
 github_repo: "https://github.com/datlavenkatareddy/REDROB_RANKER.git"
 
-sandbox_link: "[FILL ME — Streamlit Cloud URL after deploying sandbox/app.py]"
+sandbox_link: "https://redrobranker-dc9de7oiwr8vyxpjhssxnz.streamlit.app/"
 
 reproduce_command: "python src/rank.py --candidates ./data/candidates.jsonl --out ./submission.csv"
 
