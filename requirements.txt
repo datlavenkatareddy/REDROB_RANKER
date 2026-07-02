@@ -1,0 +1,10 @@
+# Core ranking pipeline (rank.py) — no heavy deps, stdlib only beyond this:
+# (json, csv, argparse, pickle, gzip, hashlib, datetime are all stdlib)
+
+# Optional: only needed for precompute_embeddings.py (offline, run before ranking)
+sentence-transformers>=2.2.0
+torch>=2.0.0
+
+# Optional: only needed for sandbox/app.py (hosted demo)
+streamlit>=1.30.0
+pandas>=2.0.0

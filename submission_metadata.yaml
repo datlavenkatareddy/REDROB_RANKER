@@ -1,0 +1,67 @@
+# Redrob Hackathon — Submission Metadata
+# Fill in the [FILL ME] fields before submitting.
+
+team_name: "[FILL ME]"
+
+primary_contact:
+  name: "Venkat"
+  email: "[FILL ME]"
+  phone: "[FILL ME]"
+
+team_members:
+  - name: "Venkat"
+    email: "[FILL ME]"
+    role: "ML Engineer"
+
+github_repo: "https://github.com/datlavenkatareddy/REDROB_RANKER.git"
+
+sandbox_link: "[FILL ME — Streamlit Cloud URL after deploying sandbox/app.py]"
+
+reproduce_command: "python src/rank.py --candidates ./data/candidates.jsonl --out ./submission.csv"
+
+compute:
+  platform: "Windows 11 PC"
+  cpu_cores: 16
+  ram_gb: 16
+  python_version: "3.12.10"
+  os: "Windows"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false   # true ONLY if you ran precompute_embeddings.py and are shipping that pickle
+  pre_computation_time_minutes: 0   # fill in if the above is true
+
+ai_tools_used:
+  - "Claude"
+
+ai_usage_summary: |
+  Used Claude for architecture design, feature engineering, honeypot-pattern
+  calibration against the real released dataset, and code implementation.
+  All design decisions (title-as-gate scoring, dynamic weight normalization,
+  honeypot detection thresholds) were validated against the actual 100K
+  candidate pool during development, not assumed. No candidate data was sent
+  to any external LLM API — the ranking pipeline itself makes no network
+  calls.
+
+methodology_summary: |
+  Hybrid rule-based ranker, no LLM calls at ranking time. Title is treated as
+  a gate (irrelevant titles are multiplicatively suppressed regardless of
+  skill list length) — the primary defense against keyword-stuffer traps.
+  Content score combines title fit, skill match (exact/substring, optionally
+  blended with sentence-transformer cosine similarity), career-history
+  evidence of shipped ranking/search/retrieval work, experience-band fit,
+  location, and education, with dynamic weight renormalization when a
+  section is missing from a profile. Redrob behavioral signals apply as a
+  bounded multiplier (0.55x-1.0x) on top of content score, not an additive
+  term, so unreachable perfect-on-paper candidates don't outrank reachable
+  slightly-weaker ones. Honeypots are detected via two internal-consistency
+  checks confirmed against the real dataset (expert-proficiency-with-zero-
+  duration skills; career-history duration exceeding stated total
+  experience) and excluded outright. Full 100K pool runs in ~40 seconds,
+  single CPU core, no GPU, no network.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true

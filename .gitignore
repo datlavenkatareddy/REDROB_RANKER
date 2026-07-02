@@ -1,0 +1,9 @@
+data/candidates.jsonl
+data/candidates.jsonl.gz
+data/candidates_slice.jsonl
+artifacts/embed_sims.pkl
+artifacts/submission_draft.csv
+__pycache__/
+*.pyc
+.DS_Store
+data/*.zip
